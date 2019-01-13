@@ -3,8 +3,8 @@
 目前社交类应用有App，小程序，网站，微信公众号等，其中最普遍有效的客户端还是App。
 本人利用空余时间开发了一款Android版App--星座空间（英文名star-zone）
 
-源码在开源到了github上[https://github.com/flylib/star-zone](https://github.com/flylib/star-zone)
-Android客户端[https://github.com/flylib/star-zone-android](https://github.com/flylib/star-zone-android)
+源码在开源到了github上[https://github.com/liushaoming/star-zone](https://github.com/liushaoming/star-zone)
+Android客户端[https://github.com/liushaoming/star-zone-android](https://github.com/liushaoming/star-zone-android)
 
 项目地址是[星座空间App](http://resources.appjishu.com/app/star-zone.apk)
 
@@ -43,7 +43,7 @@ Airbnb 在 Medium 上发博文宣布，“由于许多技术上和组织上的�
 1. 后台总体架构
 Android通过网络，到达服务器后，经过nginx反向代理到后台服务。
 调用后台接口的时候， 一部分接口是进行了权限验证的，权限验证使用userId+token
-参考我的另外一个框架[fpassport](https://github.com/flylib/fpassport)
+参考我的另外一个框架[fpassport](https://github.com/liushaoming/fpassport)
 <br/> 点击后可以访问github <br/>
 其中使用了Redis存放userId和token的对应关系。提高了系统的响应速度。
 由于app里后面会加上电商功能，对于下单功能。订单数量是商品数量的很多倍。
@@ -66,7 +66,7 @@ nginx部署静态网站后。不做优化，nginx本身就能承受上万个并�
 
 5. 推送服务,即时通讯
 使用了小米的推送服务，我自己也自主研发了一个推送服务基于netty，项目地址
-[ttps://github.com/flylib/fpush](https://github.com/flylib/fpush)
+[ttps://github.com/liushaoming/fpush](https://github.com/liushaoming/fpush)
 
 5.前端方案
 vue，双向数据绑定，提高编程效率。
@@ -79,5 +79,5 @@ element-ui界面简洁，使用简单，适合后台管理系统开发，跟vue�
 
 项目地址是[星座空间App](http://resources.appjishu.com/app/star-zone.apk)
 
-源码在开源到了github上[https://github.com/flylib/star-zone](https://github.com/flylib/star-zone)
-Android客户端[https://github.com/flylib/star-zone-android](https://github.com/flylib/star-zone-android)
+源码在开源到了github上[https://github.com/liushaoming/star-zone](https://github.com/liushaoming/star-zone)
+Android客户端[https://github.com/liushaoming/star-zone-android](https://github.com/liushaoming/star-zone-android)
