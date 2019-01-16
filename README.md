@@ -2,7 +2,9 @@
 
 目前社交类应用有App，小程序，网站，微信公众号等，其中最普遍有效的客户端还是App。
 本人利用空余时间开发了一款Android版App--星座空间（英文名star-zone）
-
+<br/>
+<b>如果该项目对您有帮忙，您可以右上角'star'支持一下，谢谢！</b>
+<br/>
 源码在开源到了github上[https://github.com/liushaoming/star-zone](https://github.com/liushaoming/star-zone)
 Android客户端[https://github.com/liushaoming/star-zone-android](https://github.com/liushaoming/star-zone-android)
 
@@ -81,3 +83,6 @@ element-ui界面简洁，使用简单，适合后台管理系统开发，跟vue�
 
 源码在开源到了github上[https://github.com/liushaoming/star-zone](https://github.com/liushaoming/star-zone)
 Android客户端[https://github.com/liushaoming/star-zone-android](https://github.com/liushaoming/star-zone-android)
+<br/>
+<b>如果该项目对您有帮忙，您可以右上角'star'支持一下，谢谢！</b>
+<br/>
