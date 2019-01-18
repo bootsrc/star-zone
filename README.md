@@ -7,11 +7,12 @@
 <br/>
 源码在开源到了github上[https://github.com/liushaoming/star-zone](https://github.com/liushaoming/star-zone)
 Android客户端[https://github.com/liushaoming/star-zone-android](https://github.com/liushaoming/star-zone-android)
+<br/>
 
-项目地址是[星座空间App](http://resources.appjishu.com/app/star-zone.apk)
+![星座空间图标](doc/image/ic_launcher.png)
 
-![星座空间图标](https://img-blog.csdn.net/20180702172220869?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xzbTEzNQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-
+ [🚀点我--下载Android客户端](http://resources.appjishu.com/app/star-zone.apk)
+<br/>
 大家可以下载后用下用用看。
 
 
