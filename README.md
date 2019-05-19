@@ -18,6 +18,14 @@ Android客户端[https://github.com/liushaoming/star-zone-android](https://githu
 <br/>
 大家可以下载后用下用用看。
 
+## 代码分析
+* [star-zone-back &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Java后台](/star-zone-back)
+
+* [star-zone-common &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 公共类库](/star-zone-common)
+
+* [star-zone-manage &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 管理页面静态项目(做了前后端分离)](/star-zone-manage)
+
+* [star-zone-android &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Android客户端](https://github.com/liushaoming/star-zone-android)
 
 ## 技术选型
 下面列举技术栈，并说明选择的原因:
