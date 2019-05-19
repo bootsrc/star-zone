@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>星座空间-管理系统</title>
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/css/common.css" >
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <script src="/js/polyfill.min.js" th:src="@{/js/polyfill.min.js}" ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <script src="/js/lib/jquery/jquery-1.12.1.min.js"></script>
+    <script src="/js/lib/jquery/jquery.form.js"></script>
+    <!-- 配置文件 -->
+    <script src="/js/common/config.js"></script>
+</head>
+<body>
+<div id="app">
+    <el-container>
+        <el-header>
+            <el-row>
+                <el-col :span="4" :offset="2">
+                    <span style="display: inline-block; height:50px; line-height: 50px; font-size: 1.3em;">星座空间-管理系统</span>
+                </el-col>
+
+                <el-col :span="4" :offset="8">
+                    <div class="grid-content bg-purple-dark">
+                        <span>admin</span>
+
+                        <el-dropdown>
+                            <i class="el-icon-setting" style="margin-right: 15px"></i>
+                            <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item>个人信息</el-dropdown-item>
+                                <el-dropdown-item>退出登录</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                    </div>
+                </el-col>
+            </el-row>
+        </el-header>
+
+        <el-container>
+            <aside width="300px" th:fragment="menu">
+                <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
+                    <el-radio-button :label="false">展开</el-radio-button>
+                    <el-radio-button :label="true">收起</el-radio-button>
+                </el-radio-group>
+                <el-menu default-active="1-2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+                    <el-submenu index="1">
+                        <template slot="title">
+                            <i class="el-icon-document"></i>
+                            <span slot="title">主题管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <a href="/view/topic/topicList.html" ><el-menu-item index="1-2">主题管理</el-menu-item></a>
+                        </el-menu-item-group>
+                    </el-submenu>
+
+                    <el-submenu index="2">
+                        <template slot="title">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title">商品管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <!--<span slot="title">分组一</span>-->
+                            <a href="/view/goods/goodsList.html" ><el-menu-item index="2-1">商品列表</el-menu-item></a>
+                        </el-menu-item-group>
+                    </el-submenu>
+                </el-menu>
+            </aside>
+
+            <el-main>
+                <el-row>
+                    <el-col>
+                        <!-- Add balck list -->
+                        <el-button type="text" @click="openAddDialog">增加话题</el-button>
+                        <el-dialog title="话题内容" :visible.sync="dialogFormVisible" >
+                            <el-form :model="addForm">
+                                <del-form-item v-if="false">
+                                    <el-input v-model="addForm.topicId" v-if="idVisible"></el-input>
+                                </del-form-item>
+                                <el-form-item label="标题" :label-width="formLabelWidth">
+                                    <el-input v-model="addForm.title" auto-complete="off" ></el-input>
+                                </el-form-item>
+                                <el-form-item label="状态" :label-width="formLabelWidth">
+                                    <el-input v-model="addForm.status" auto-complete="off" ></el-input>
+                                </el-form-item>
+                                <el-form-item label="排序号" :label-width="formLabelWidth">
+                                    <el-input v-model="addForm.serial" auto-complete="off" ></el-input>
+                                </el-form-item>
+                                <el-form-item label="简介" :label-width="formLabelWidth">
+                                    <el-input v-model="addForm.introduction" auto-complete="off"
+                                              type="textarea" :rows="3"></el-input>
+                                </el-form-item>
+                                <!--<el-form-item label="图片" :label-width="formLabelWidth">-->
+                                    <!--<el-input v-model="addForm.img" auto-complete="off" readonly="true"></el-input>-->
+                                <!--</el-form-item>-->
+
+                                <el-form-item label="图片" :label-width="formLabelWidth" >
+                                    <div>
+                                        <el-upload
+                                                class="upload-demo"
+                                                drag
+                                                :action="uploadAction"
+                                                name="upfile"
+                                                :on-success="handleUploadSuccess"
+                                                :on-preview="handlePreview"
+                                                :on-remove="handleRemove"
+                                                :before-remove="beforeRemove"
+                                                :limit="1"
+                                                :on-exceed="handleExceed"
+                                                :file-list="fileList">
+                                            <el-button size="small" type="primary">点击上传</el-button>
+                                        </el-upload>
+                                    </div>
+                                </el-form-item>
+                                <el-form-item label="内容" :label-width="formLabelWidth" >
+                                    <el-input v-model="addForm.content" auto-complete="off" type="textarea" :rows="15" ></el-input>
+                                </el-form-item>
+                            </el-form>
+
+                            <div slot="footer" class="dialog-footer">
+                                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                                <el-button type="primary" @click="saveTopic">确 定</el-button>
+                            </div>
+                        </el-dialog>
+                    </el-col>
+                </el-row>
+
+                <el-row>
+                    <el-col>
+
+                        <div class="grid-content bg-purple-dark" style="border: 1px solid #B3C0D1;">
+                            <el-table ref="singleTable" :data="tableData" highlight-current-row
+                                      style="width: 100%">
+                                <el-table-column
+                                        prop="topicId"
+                                        label="主题编号"
+                                        width="100">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="title"
+                                        label="标题" >
+                                </el-table-column>
+                                <el-table-column
+                                        prop="createTime"
+                                        label="创建时间"
+                                        width="180">
+                                </el-table-column>
+
+                                <el-table-column
+                                        prop="updateTime"
+                                        label="更新时间">
+                                </el-table-column>
+
+                                <el-table-column
+                                        prop="status"
+                                        label="状态">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="serial"
+                                        label="排序号">
+                                </el-table-column>
+
+                                <el-table-column label="操作">
+                                    <template slot-scope="scope">
+                                        <el-button
+                                                size="mini"
+                                                @click="openEditDialog(scope.row)">修改
+                                        </el-button>
+                                        <el-button
+                                                size="mini"
+                                                type="danger"
+                                                @click="delTopic(scope.row)">删除
+                                        </el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </div>
+
+                        <div class="block" v-show="this.total>0">
+                            <el-pagination
+                                    @size-change="handleSizeChange"
+                                    @current-change="handleCurrentChange"
+                                    :current-page.sync="pageForm.pageNo"
+                                    :page-size="pageForm.pageSize"
+                                    layout="total, prev, pager, next"
+                                    :total="total">
+                            </el-pagination>
+                        </div>
+
+                    </el-col>
+                </el-row>
+
+            </el-main>
+        </el-container>
+    </el-container>
+</div>
+
+<style>
+    .el-header {
+        background-color: #B3C0D1;
+        color: #333;
+        line-height: 60px;
+    }
+
+    .el-aside {
+        color: #333;
+    }
+
+    .el-menu-vertical-demo:not(.el-menu--collapse) {
+        width: 200px;
+        min-height: 400px;
+    }
+</style>
+
+<script>
+    var ctxPath =  CustomConfig.urlBase;
+
+    console.log(ctxPath);
+</script>
+<script src="/js/app/topicList.js"></script>
+</body>
+</html>
