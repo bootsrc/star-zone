@@ -1,5 +1,8 @@
 # 社交App系统架构-星座空间
 
+Android客户端[https://github.com/liushaoming/star-zone-android](https://github.com/liushaoming/star-zone-android)
+
+
 目前社交类应用有App，小程序，网站，微信公众号等，其中最普遍有效的客户端还是App。
 本人利用空余时间开发了一款Android版App--星座空间（英文名star-zone）
 <br/>
