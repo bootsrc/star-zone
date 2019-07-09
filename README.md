@@ -98,3 +98,26 @@ Android客户端[https://github.com/liushaoming/star-zone-android](https://githu
 <br/>
 <b>如果该项目对您有帮忙，您可以右上角'star'支持一下，谢谢！</b>
 <br/>
+
+## 小米推送的jar包 为什么maven编译的时候会找不到?
+
+比如下面两个jar MiPush-Server.jar, MiPush-json-simple.jar依赖会找不到
+
+```xml
+<dependency>
+    <groupId>com.xiaomi</groupId>
+    <artifactId>MiPush-Server</artifactId>
+    <version>2.2.19</version>
+</dependency>
+<dependency>
+    <groupId>com.xiaomi</groupId>
+    <artifactId>MiPush-json-simple</artifactId>
+    <version>1.1.1</version>
+</dependency>
+```
+
+解决办法：
+
+这个是需要本地jar instal到本地maven仓库的。
+
+请大家联系本项目的作者来获取方法。 后面有时间再完善readme文档. 最近抽空更新到github
