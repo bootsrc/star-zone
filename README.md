@@ -161,3 +161,6 @@ groupId 和artifactId和version都是我自己创建制定的。 并非官方给
 [MiPush_SDK_Server_2_2_21.jar](/sdk/MiPush_Server_Java_20190420/java/sdk/MiPush_SDK_Server_2_2_21.jar)
 
 [json-simple-1.1.1.jar](/sdk/MiPush_Server_Java_20190420/java/sdk/json-simple-1.1.1.jar)
+
+百度云短信
+[qcloudsms_java](https://github.com/qcloudsms/qcloudsms_java)
