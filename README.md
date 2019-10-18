@@ -118,6 +118,46 @@ Android客户端[https://github.com/liushaoming/star-zone-android](https://githu
 
 解决办法：
 
-这个是需要本地jar instal到本地maven仓库的。
+这个是需要本地jar instal到本地maven仓库的。具体操作如下
+```text
+添加本地jar到maven springboot项目中
 
-请大家联系本项目的作者来获取方法。 后面有时间再完善readme文档. 最近抽空更新到github
+maven项目中，如果想引用第三方提供的，或者自己的本地jar包。  是非常困难的事情。
+
+因为这些jar没有groupId， artifactId， maven命令打包无法引用。
+解决思路：
+用mvn install:install-file命令把本地的jar安装到local maven repository。 然后就可以在pom里像普通的maven引用来引用这个jar了
+实例如下：
+
+step1 首先把本地的jar都放到项目根路径下新建的lib中去
+
+step2，命令行进入lib路径
+
+mvn install:install-file -DgroupId=com.xiaomi -DartifactId=MiPush-Server -Dversion=2.2.19 -Dpackaging=jar -Dfile=MiPush-Server-2.2.19.jar
+
+mvn install:install-file -DgroupId=com.xiaomi -DartifactId=MiPush-json-simple -Dversion=1.1.1 -Dpackaging=jar -Dfile=MiPush-json-simple-1.1.1.jar
+
+
+这这两个jar包都install到local repository了。 
+然后，在自己的springboot项目里。 就可以直接添加dependency就可以了 
+
+<dependency>
+    <groupId>com.xiaomi</groupId>
+    <artifactId>MiPush-Server</artifactId>
+    <version>2.2.19</version>
+</dependency>
+<dependency>
+    <groupId>com.xiaomi</groupId>
+    <artifactId>MiPush-json-simple</artifactId>
+    <version>1.1.1</version>
+</dependency>
+
+
+groupId 和artifactId和version都是我自己创建制定的。 并非官方给的
+
+```
+注意这里MiPush的jar包官方在不断升级。version自己可以改成最新的，比如2.2.21
+在本项目里的MiPush_SDK_Server.jar路径为
+[MiPush_SDK_Server_2_2_21.jar](/sdk/MiPush_Server_Java_20190420/java/sdk/MiPush_SDK_Server_2_2_21.jar)
+
+[json-simple-1.1.1.jar](/sdk/MiPush_Server_Java_20190420/java/sdk/json-simple-1.1.1.jar)
